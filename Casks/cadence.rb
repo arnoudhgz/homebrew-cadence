@@ -16,6 +16,16 @@ cask "cadence" do
 
   app "Cadence.app"
 
+  # Cadence is adhoc-signed (not yet Apple Developer ID notarized). Homebrew
+  # dropped the `--no-quarantine` flag, so strip the quarantine xattr here
+  # to give users a frictionless first launch. Remove once a notarized build
+  # ships.
+  postflight do
+    system_command "/usr/bin/xattr",
+                   args: ["-dr", "com.apple.quarantine", "#{appdir}/Cadence.app"],
+                   sudo: false
+  end
+
   zap trash: [
     "~/Library/Application Support/Cadence",
     "~/Library/Caches/com.arnoudhgz.Cadence",

@@ -6,26 +6,20 @@ A personal [Homebrew tap](https://docs.brew.sh/Taps) hosting the cask for [Caden
 
 ```sh
 brew tap arnoudhgz/cadence
-brew install --cask --no-quarantine cadence
+brew install --cask cadence
 ```
 
 Or as a one-liner:
 
 ```sh
-brew install --cask --no-quarantine arnoudhgz/cadence/cadence
+brew install --cask arnoudhgz/cadence/cadence
 ```
 
-### Why `--no-quarantine`?
+### A note on Gatekeeper
 
-Cadence is currently *adhoc-signed* (no Apple Developer ID, no notarization). Without `--no-quarantine`, macOS Gatekeeper will block the first launch with *"Cadence cannot be opened because Apple cannot check it for malicious software"* and you'd have to right-click → Open in Finder to bypass it. The flag tells Homebrew to skip applying the quarantine attribute so the first launch just works.
+Cadence is currently *adhoc-signed* (no Apple Developer ID, no notarization). Homebrew recently removed the `--no-quarantine` flag, so the cask itself strips the macOS quarantine attribute in a `postflight` step right after install. The result: first launch works straight from the Dock — no right-click → Open dance.
 
-If you forgot the flag, you can fix it after install:
-
-```sh
-xattr -dr com.apple.quarantine /Applications/Cadence.app
-```
-
-Once Cadence ships a Developer ID-signed build (planned for a future release), the `--no-quarantine` flag won't be needed anymore.
+Once Cadence ships a Developer ID-signed and notarized build, that postflight workaround will be removed.
 
 ## Update
 
