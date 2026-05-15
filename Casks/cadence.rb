@@ -2,7 +2,7 @@ cask "cadence" do
   version "0.2.0"
   sha256 "2c8cd41bbf51b7c6301ab9b2dcfa70a043150ba370de16068229b23f49ed6ff6"
 
-  url "https://github.com/arnoudhgz/cadence/releases/download/#{version}/Cadence.zip"
+  url "https://github.com/arnoudhgz/cadence/releases/download/v#{version}/Cadence.zip"
   name "Cadence"
   desc "Unofficial YouTube Music player"
   homepage "https://github.com/arnoudhgz/cadence"
